@@ -38,3 +38,9 @@ export function asyncMap(f) {
     ))
   )
 }
+
+export function rethrow(message) {
+  return this.catch(err => {
+    throw new Error(`${message}: ${err}`)
+  })
+}
