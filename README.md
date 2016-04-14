@@ -1,5 +1,7 @@
 # pext <small>Promise Extensions</small>
 
+[![Build Status](https://api.travis-ci.org/phaux/pext.svg)](https://travis-ci.org/phaux/pext)
+
 ```js
 
 import {deadline, asyncMap} from 'pext'
@@ -71,8 +73,7 @@ Returns a promise for an array of new values. `newValue` can be a promise.
 It can be called on a regular array as well as on a promise for an array,
 an array of promises or a promise for an array of promises.
 
-See also [Array.prototype.map](https://developer.mozilla.org/
-en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on MDN.
+See also [Array.prototype.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on MDN.
 
 ```js
 const jsons = await ['a.json', 'b.json']
@@ -87,8 +88,7 @@ Returns a promise for the final accumulator value (final `newVal`).
 It can be called on a regular array as well as on a promise for an array,
 an array of promises or a promise for an array of promises.
 
-See also [Array.prototype.reduce](https://developer.mozilla.org/
-en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) on MDN.
+See also [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) on MDN.
 
 ```js
 const poem = ['verse1.txt', 'verse2.txt']
