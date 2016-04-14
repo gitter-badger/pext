@@ -24,23 +24,31 @@ export function rethrow(message) {
   })
 }
 
-export function asyncMap(callback) {
+export function asyncMap(iteratee) {
   return P.resolve(this).then(arr =>
     P.all(arr.map((el, i) =>
       P.resolve(el)
-      .then(el => P.resolve(callback(el, i)))
+      .then(el => P.resolve(iteratee(el, i)))
     ))
   )
 }
 
-export function asyncReduce(callback, ...rest) {
+export function asyncReduce(iteratee, ...rest) {
   return P.resolve(this).then(arr =>
     arr.reduce((acc, el) =>
       P.resolve(acc).then(acc =>
         P.resolve(el).then(el =>
-          P.resolve(callback(acc, el))
+          P.resolve(iteratee(acc, el))
         )
       )
     , ...rest)
   )
+}
+
+export function asyncFlatten() {
+  return this::asyncReduce((acc, el) => acc.concat(el), [])
+}
+
+export function asyncFlatMap(iteratee) {
+  return this::asyncMap(iteratee)::asyncFlatten()
 }

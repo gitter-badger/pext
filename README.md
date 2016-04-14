@@ -98,3 +98,11 @@ const poem = ['verse1.txt', 'verse2.txt']
   return poem + verse
 }, '')
 ```
+
+### `Array::asyncFlatten()`
+
+Equivalent to `::asyncReduce((acc, el) => acc.concat(el), [])`
+
+### `Array::asyncFlatMap(elem => newValue)`
+
+Equivalent to `::asyncMap(elem => newValue)::asyncFlatten()`

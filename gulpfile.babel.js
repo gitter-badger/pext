@@ -52,12 +52,11 @@ export const build = series(
       tasks.buildTest,
     ),
   ),
-  tasks.test,
 )
 
 export const test = series(
   build,
-  tasks.clean,
+  tasks.test,
 )
 
 export const clean = tasks.clean
