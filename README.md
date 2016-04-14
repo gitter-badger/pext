@@ -24,8 +24,6 @@ console.log(users)
 
 ```
 
-[TOC]
-
 ## API
 
 ### `delay(time)`
