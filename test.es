@@ -1,24 +1,36 @@
-import 'regenerator/runtime'
+//import 'babel-polyfill'
 import vows from 'vows'
 import assert from 'assert'
-import {delay} from '.'
+import {delay, asyncReduce} from '.'
+
+const p = v => Promise.resolve(v)
+const time = f => () => p(Date.now()).then(t => p(f()).then(v => ({t, v})))
+const pify = f => (...args) => delay(100).then(() => f(...args))
+const took = time => ({t}) => assert.epsilon(10, t, Date.now - time)
+const eq = val => ({v}) => assert.equal(v, val)
 
 export default vows.describe('pext')
 
 .addBatch({
 
-  "1 sec delay": {
-
-    async topic() {
-      const t = Date.now()
-      await delay(1000)
-      return t
-    },
-
-    "should take 1 sec": t => {
-      assert.epsilon(10, t, Date.now() - 1000)
-    },
-
+  "delay(1000)": {
+    topic: time(() => delay(1000)),
+    "took 1 sec": took(1000),
+  },
+  "[1, 2, 3]::asyncReduce(asyncSum, 0)": {
+    topic: time(() => [1, 2, 3]::asyncReduce(pify((a, b) => a + b), 0)),
+    "== 6": eq(6),
+    "took 300ms": took(300),
+  },
+  "[2, 3, 4]::asyncReduce(asyncSum)": {
+    topic: time(() => [2, 3, 4]::asyncReduce(pify((a, b) => a + b))),
+    "== 9": eq(9),
+    "took 200ms": took(200),
+  },
+  "[p(1), p(2), p(3)]::asyncReduce(sum, 0)": {
+    topic: time(() => [p(1), p(2), p(3)]::asyncReduce((a, b) => a + b, 0)),
+    "== 6": eq(6),
+    "was instantenous": took(0),
   },
 
 })

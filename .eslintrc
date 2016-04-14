@@ -15,7 +15,7 @@
     "yoda": ["error", "never"],
     "array-bracket-spacing": ["error", "never"],
     "block-spacing": ["error", "always"],
-    "brace-style": ["error", "stroustrup"],
+    "brace-style": ["error", "stroustrup", {"allowSingleLine": true}],
     "camelcase": ["error", {"properties": "never"}],
     "comma-spacing": "error",
     "comma-style": ["error", "first", {
