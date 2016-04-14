@@ -1,6 +1,6 @@
 {
   "name": "pext",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Promise Extensions",
   "author": "phaux <phaux4@gmail.com>",
   "license": "MIT",
