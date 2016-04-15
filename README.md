@@ -1,5 +1,7 @@
 # pext <small>Promise Extensions</small>
 
+[![Join the chat at https://gitter.im/phaux/pext](https://badges.gitter.im/phaux/pext.svg)](https://gitter.im/phaux/pext?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://api.travis-ci.org/phaux/pext.svg)](https://travis-ci.org/phaux/pext)
 
 ```js
